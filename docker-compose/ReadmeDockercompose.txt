@@ -52,3 +52,5 @@ Stop the Jenkins Container: If you need to stop the Jenkins container:
 
 docker-compose down
 ###########################################
+# Run the Jenkins agent container with the fetched secret i.e. docker exec jenkins cat /var/jenkins_home/secrets/initialAdminPassword
+docker run -d --name jenkins-agent   --network docker-compose_jenkins-network   -e JENKINS_URL=http://jenkins:8080   -e JENKINS_SECRET=966665af184dfa96f44e2c7390846283966003f93ac096eefd59490978298689   -e JENKINS_AGENT_NAME=agent1   jenkins/inbound-agent

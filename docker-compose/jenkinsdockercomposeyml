@@ -1,15 +1,9 @@
 version: '3.8'
 
-networks:
-  jenkins-network:
-    driver: bridge
-
 services:
   jenkins:
     image: jenkins/jenkins:lts
     container_name: jenkins
-    networks:
-      - jenkins-network
     ports:
       - "8080:8080"  # Jenkins Web UI
       - "50000:50000"  # Jenkins Agent
@@ -17,8 +11,7 @@ services:
       - jenkins_home:/var/jenkins_home  # Persistent Jenkins data
     restart: unless-stopped  # Automatically restart the container if it stops
 
-
 volumes:
   jenkins_home:
     driver: local
-## Post this create agent manually as the secret key changes every time for agent or map secret key to persisten volume
+
